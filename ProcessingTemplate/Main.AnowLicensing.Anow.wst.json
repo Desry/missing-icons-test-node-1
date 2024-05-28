@@ -1,0 +1,80 @@
+{
+  "owner": "dawiener",
+  "priority": "0",
+  "processingType": "WORKFLOW",
+  "tags": 
+  [
+    "Anow"
+  ],
+  "workflowType": "STANDARD",
+  "items": 
+  [
+    {
+      "name": "SetVars.AnowLicensing.Anow.py",
+      "processingTemplate": "SetVars.AnowLicensing.Anow.py"
+    },
+    {
+      "name": "Select.AnowLicensing.Anow.sql",
+      "processingTemplate": "Select.AnowLicensing.Anow.sql",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "SetVars.AnowLicensing.Anow.py",
+          "predecessor": "SetVars.AnowLicensing.Anow.py",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "LINUX",
+          "taskType": "PYTHON"
+        }
+      ]
+    },
+    {
+      "name": "ForEach.AnowLicensing.Anow.wfe",
+      "processingTemplate": "ForEach.AnowLicensing.Anow.wfe",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "Select.AnowLicensing.Anow.sql",
+          "predecessor": "Select.AnowLicensing.Anow.sql",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "POSTGRESQL",
+          "taskType": "RDBMS_SQL_STATEMENT"
+        }
+      ]
+    },
+    {
+      "name": "SelectREQIT.AnowLicensing.Anow.sql",
+      "processingTemplate": "SelectREQIT.AnowLicensing.Anow.sql",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "ForEach.AnowLicensing.Anow.wfe",
+          "predecessor": "ForEach.AnowLicensing.Anow.wfe",
+          "processingStatus": "COMPLETED",
+          "processingType": "WORKFLOW",
+          "workflowType": "FOR_EACH"
+        }
+      ]
+    },
+    {
+      "name": "ForEachREQIT.AnowLicensing.Anow.wfe",
+      "processingTemplate": "ForEachREQIT.AnowLicensing.Anow.wfe",
+      "dependencies": 
+      [
+        {
+          "dependencyType": "PREDECESSOR",
+          "name": "SelectREQIT.AnowLicensing.Anow.sql",
+          "predecessor": "SelectREQIT.AnowLicensing.Anow.sql",
+          "processingStatus": "COMPLETED",
+          "processingType": "TASK",
+          "serverNodeType": "POSTGRESQL",
+          "taskType": "RDBMS_SQL_STATEMENT"
+        }
+      ]
+    }
+  ]
+}
