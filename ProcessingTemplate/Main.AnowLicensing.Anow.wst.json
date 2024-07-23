@@ -11,11 +11,17 @@
   [
     {
       "name": "SetVars.AnowLicensing.Anow.py",
-      "processingTemplate": "SetVars.AnowLicensing.Anow.py"
+      "processingTemplate": "SetVars.AnowLicensing.Anow.py",
+      "processingType": "TASK",
+      "serverNodeType": "LINUX",
+      "taskType": "PYTHON"
     },
     {
       "name": "Select.AnowLicensing.Anow.sql",
       "processingTemplate": "Select.AnowLicensing.Anow.sql",
+      "processingType": "TASK",
+      "serverNodeType": "POSTGRESQL",
+      "taskType": "RDBMS_SQL_STATEMENT",
       "dependencies": 
       [
         {
@@ -32,6 +38,8 @@
     {
       "name": "ForEach.AnowLicensing.Anow.wfe",
       "processingTemplate": "ForEach.AnowLicensing.Anow.wfe",
+      "processingType": "WORKFLOW",
+      "workflowType": "FOR_EACH",
       "dependencies": 
       [
         {
@@ -48,6 +56,9 @@
     {
       "name": "SelectREQIT.AnowLicensing.Anow.sql",
       "processingTemplate": "SelectREQIT.AnowLicensing.Anow.sql",
+      "processingType": "TASK",
+      "serverNodeType": "POSTGRESQL",
+      "taskType": "RDBMS_SQL_STATEMENT",
       "dependencies": 
       [
         {
@@ -63,6 +74,8 @@
     {
       "name": "ForEachREQIT.AnowLicensing.Anow.wfe",
       "processingTemplate": "ForEachREQIT.AnowLicensing.Anow.wfe",
+      "processingType": "WORKFLOW",
+      "workflowType": "FOR_EACH",
       "dependencies": 
       [
         {
